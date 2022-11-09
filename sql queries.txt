@@ -1,0 +1,4 @@
+create user todo identified by todo
+grant all privileges to todo
+create table todo(sno int primary key,task varchar(50) not null,description varchar(200) not null,dateoftask date not null,status varchar(50) not null )
+create sequence todosequence increment by 1 start with 1
