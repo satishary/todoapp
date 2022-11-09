@@ -4,7 +4,7 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="utilitiespackage.Utilities"%>
 <%@include  file="header.jsp" %>
-<title>Task Entry</title>
+<title>Task Delete</title>
 </head>
 <body>
     <%@include  file="menu.jsp" %>

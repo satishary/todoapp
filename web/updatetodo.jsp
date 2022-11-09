@@ -4,7 +4,7 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="utilitiespackage.Utilities"%>
 <%@include  file="header.jsp" %>
-<title>Task Entry</title>
+<title>Task Update</title>
 </head>
 <body>
     <%@include  file="menu.jsp" %>
@@ -12,7 +12,7 @@
         boolean ispostback = Utilities.isPostBack(request);
         System.err.println(ispostback);
 
-        String task = "", description = "", dateoftask = "", status = "", sno = "";
+        String task = "", description = "", dateoftask = "", status = "", sno = "",result="";
         System.out.println("ispostback");
         if (!ispostback) {
             sno = request.getParameter("sno");
@@ -40,8 +40,13 @@
             ps.setString(3, dateoftask);
             ps.setString(4, status);
             ps.setString(5, sno);
-            int n = ps.executeUpdate();
-           // out.println(n + "," + sno);
+             int n = ps.executeUpdate();
+            if(n>0)
+            result=Utilities.successMessage("Updated Successfully");
+            else
+                result=Utilities.errorMessage("Updating Failed");
+           
+           
 
         }
 
@@ -51,6 +56,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
+                <h1><%=result%></h1>
                 <form method="post">
                     <input type="hidden" name="check">
                     <input type="hidden" name="sno" value="<%=sno%>">

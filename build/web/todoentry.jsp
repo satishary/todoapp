@@ -11,21 +11,26 @@
         boolean ispostback = Utilities.isPostBack(request);
         System.err.println(ispostback);
 
-        String task = "", description = "", dateoftask = "", status = "";
+        String task = "", description = "", dateoftask = "", status = "",result="";
         System.out.println("ispostback");
        
         if (ispostback) {
             task = request.getParameter("task");
             description = request.getParameter("description");
             dateoftask = request.getParameter("dateoftask");
-            out.println(dateoftask);
+           // out.println(dateoftask);
             status = request.getParameter("status");
             PreparedStatement ps=DbConnect.connect().prepareStatement("insert into todo values(todosequence.nextval,?,?,  to_date(?,'yyyy-mm-dd'),?)");
             ps.setString(1, task);
             ps.setString(2, description);
             ps.setString(3,dateoftask);
             ps.setString(4, status);
-            ps.executeUpdate();
+             int n = ps.executeUpdate();
+            if(n>0)
+            result=Utilities.successMessage("Inserted Successfully");
+            else
+                result=Utilities.errorMessage("Inserting Failed");
+           
 
         }
 
@@ -35,6 +40,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
+                <h1><%=result%></h1>
                 <form method="post">
                     
                     <input type="hidden" name="check">
