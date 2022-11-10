@@ -1,0 +1,20 @@
+SMAP
+front_jsp.java
+JSP
+*S JSP
+*F
++ 0 header.jsp
+header.jsp
++ 1 front.jsp
+front.jsp
++ 2 menu.jsp
+menu.jsp
++ 3 footer.jsp
+footer.jsp
+*L
+1,23:51
+1#1,6:74
+1#2,38:80
+6#1,19:117
+1#3,103:136
+*E

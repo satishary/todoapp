@@ -23,7 +23,6 @@
                 task = "" + rs.getObject("task");
                 description = "" + rs.getObject("description");;
                 dateoftask = "" + rs.getObject("dateoftask");;
-
                 status = "" + rs.getObject("status");;
             }
 

@@ -71,7 +71,7 @@ public final class todoentry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("     <nav class=\"navbar navbar-expand-lg bg-light\">\n");
       out.write("  <div class=\"container-fluid\">\n");
-      out.write("    <a class=\"navbar-brand\" href=\"#\">Navbar</a>\n");
+      out.write("    <a class=\"navbar-brand\" href=\"#\">Home</a>\n");
       out.write("    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n");
       out.write("      <span class=\"navbar-toggler-icon\"></span>\n");
       out.write("    </button>\n");
@@ -85,11 +85,11 @@ public final class todoentry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </li>\n");
       out.write("        <li class=\"nav-item dropdown\">\n");
       out.write("          <a class=\"nav-link dropdown-toggle\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\n");
-      out.write("            Dropdown\n");
+      out.write("            Utilities\n");
       out.write("          </a>\n");
       out.write("          <ul class=\"dropdown-menu\">\n");
-      out.write("            <li><a class=\"dropdown-item\" href=\"#\">Action</a></li>\n");
-      out.write("            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>\n");
+      out.write("              <li><a class=\"dropdown-item\" href=\"todoentry.jsp\">Insert Todo</a></li>\n");
+      out.write("              <li><a class=\"dropdown-item\" href=\"alltodo.jsp\">View Todo</a></li>\n");
       out.write("            <li><hr class=\"dropdown-divider\"></li>\n");
       out.write("            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>\n");
       out.write("          </ul>\n");
@@ -111,21 +111,26 @@ public final class todoentry_jsp extends org.apache.jasper.runtime.HttpJspBase
         boolean ispostback = Utilities.isPostBack(request);
         System.err.println(ispostback);
 
-        String task = "", description = "", dateoftask = "", status = "";
+        String task = "", description = "", dateoftask = "", status = "",result="";
         System.out.println("ispostback");
        
         if (ispostback) {
             task = request.getParameter("task");
             description = request.getParameter("description");
             dateoftask = request.getParameter("dateoftask");
-            out.println(dateoftask);
+           // out.println(dateoftask);
             status = request.getParameter("status");
             PreparedStatement ps=DbConnect.connect().prepareStatement("insert into todo values(todosequence.nextval,?,?,  to_date(?,'yyyy-mm-dd'),?)");
             ps.setString(1, task);
             ps.setString(2, description);
             ps.setString(3,dateoftask);
             ps.setString(4, status);
-            ps.executeUpdate();
+             int n = ps.executeUpdate();
+            if(n>0)
+            result=Utilities.successMessage("Inserted Successfully");
+            else
+                result=Utilities.errorMessage("Inserting Failed");
+           
 
         }
 
@@ -136,6 +141,9 @@ public final class todoentry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"row\">\n");
       out.write("            <div class=\"col-md-3\"></div>\n");
       out.write("            <div class=\"col-md-6\">\n");
+      out.write("                <h1>");
+      out.print(result);
+      out.write("</h1>\n");
       out.write("                <form method=\"post\">\n");
       out.write("                    \n");
       out.write("                    <input type=\"hidden\" name=\"check\">\n");
@@ -194,6 +202,12 @@ public final class todoentry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("    ");
       out.write("  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3\" crossorigin=\"anonymous\"></script>\n");
+      out.write("  <div class=\"row\">\n");
+      out.write("      <div class=\"col-md-12\">\n");
+      out.write("          &COPY; Satish\n");
+      out.write("      </div>\n");
+      out.write("      \n");
+      out.write("  </div>\n");
       out.write("    </body>\n");
       out.write("</html>");
     } catch (Throwable t) {
