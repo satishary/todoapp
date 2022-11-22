@@ -1,20 +1,20 @@
 SMAP
-front_jsp.java
+index_jsp.java
 JSP
 *S JSP
 *F
 + 0 header.jsp
 header.jsp
-+ 1 front.jsp
-front.jsp
++ 1 index.jsp
+index.jsp
 + 2 menu.jsp
 menu.jsp
 + 3 footer.jsp
 footer.jsp
 *L
 1,23:51
-1#1,38:74
-1#2,38:112
-38#1,575:149
-1#3,94:724
+1#1,5:74
+1#2,38:79
+5#1,7:116
+1#3,94:123
 *E

@@ -2,16 +2,7 @@
 
 
 <div class="row">
-      <div class="col-md-12">
-         
-          
-          
-          
-          
-          
-          
-          
-          
+      <div class="col-md-12">          
 <div class="container">
   <footer class="py-5">
     <div class="row">
